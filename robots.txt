@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jajera.github.io/datadog-hcl-generator/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

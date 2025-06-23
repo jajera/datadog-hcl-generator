@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="url(#grad)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Dog face -->
+  <!-- Ears -->
+  <ellipse cx="35" cy="30" rx="8" ry="15" fill="#fff" opacity="0.9"/>
+  <ellipse cx="65" cy="30" rx="8" ry="15" fill="#fff" opacity="0.9"/>
+  
+  <!-- Head -->
+  <circle cx="50" cy="45" r="20" fill="#fff" opacity="0.95"/>
+  
+  <!-- Eyes -->
+  <circle cx="43" cy="40" r="3" fill="#333"/>
+  <circle cx="57" cy="40" r="3" fill="#333"/>
+  
+  <!-- Nose -->
+  <ellipse cx="50" cy="48" rx="2" ry="1.5" fill="#333"/>
+  
+  <!-- Mouth -->
+  <path d="M 45 55 Q 50 60 55 55" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Tongue -->
+  <ellipse cx="50" cy="58" rx="3" ry="2" fill="#ff6b9d" opacity="0.8"/>
+</svg> 

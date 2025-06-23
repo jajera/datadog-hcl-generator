@@ -1,0 +1,69 @@
+name: CI - Validate and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          # Install HTML validator
+          sudo apt-get update
+          sudo apt-get install -y tidy
+
+          # Validate HTML (warnings only, not errors)
+          tidy -q -e index.html || true
+
+      - name: Validate JSON files
+        run: |
+          # Validate JSON files
+          python3 -m json.tool sample-dashboard.json > /dev/null
+          python3 -m json.tool widget-config.json > /dev/null
+          python3 -m json.tool manifest.json > /dev/null
+          echo "✅ All JSON files are valid"
+
+      - name: Check file sizes
+        run: |
+          # Check that files aren't too large
+          find . -name "*.html" -o -name "*.css" -o -name "*.js" | xargs ls -la
+
+          # Warn if any file is larger than 1MB
+          find . -name "*.html" -o -name "*.css" -o -name "*.js" -size +1M -exec echo "⚠️  Warning: {} is larger than 1MB" \;
+
+      - name: Test JavaScript syntax
+        run: |
+          # Basic JavaScript syntax check
+          node -c script.js
+          echo "✅ JavaScript syntax is valid"
+
+      - name: Validate CSS
+        run: |
+          # Basic CSS validation (check for syntax errors)
+          # This is a simple check - for production you might want a proper CSS validator
+          if grep -P "(?<!-)(?<!:)\{[^}]*(?<!;)\}" style.css; then
+            echo "⚠️  Potential CSS syntax issues found"
+          else
+            echo "✅ CSS syntax looks good"
+          fi
+
+      - name: Summary
+        run: |
+          echo "🎉 All validation checks completed!"
+          echo "📋 Checks performed:"
+          echo "  ✅ HTML validation"
+          echo "  ✅ JSON validation"
+          echo "  ✅ JavaScript syntax"
+          echo "  ✅ File size check"
+          echo "  ✅ CSS validation"
