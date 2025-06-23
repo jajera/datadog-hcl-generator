@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datadog HCL Generator - Convert Dashboard JSON to Terraform</title>
+    <meta name="description" content="Convert Datadog dashboard JSON exports into Terraform HCL code. Free, privacy-first, browser-based tool for DevOps teams.">
+    <meta name="keywords" content="datadog,terraform,hcl,dashboard,json,converter,devops,infrastructure,code">
+    <meta name="author" content="Datadog HCL Generator">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jajera.github.io/datadog-hcl-generator/">
+    <meta property="og:title" content="Datadog HCL Generator">
+    <meta property="og:description" content="Convert Datadog dashboard JSON to Terraform HCL code">
+    <meta property="og:image" content="https://jajera.github.io/datadog-hcl-generator/favicon.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jajera.github.io/datadog-hcl-generator/">
+    <meta property="twitter:title" content="Datadog HCL Generator">
+    <meta property="twitter:description" content="Convert Datadog dashboard JSON to Terraform HCL code">
+    <meta property="twitter:image" content="https://jajera.github.io/datadog-hcl-generator/favicon.svg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <!-- Empty - reserved for future use -->
+                </div>
+                <div class="header-center">
+                    <h1>🐕 Datadog HCL Generator</h1>
+                    <p>Convert Datadog dashboards JSON into Terraform HCL</p>
+                </div>
+                <div class="header-right">
+                    <a href="https://github.com/jajera/datadog-hcl-generator" target="_blank" rel="noopener" class="github-link" aria-label="View on GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        🌙
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="app-grid">
+                <!-- Input Section -->
+                <section class="input-section">
+                    <h2>Input</h2>
+                    <div class="input-controls">
+                        <button id="clear-input" class="btn btn-secondary">Clear</button>
+                        <label for="file-input" class="btn btn-secondary file-input-label">
+                            📁 Load File
+                            <input type="file" id="file-input" accept=".json" style="display: none;">
+                        </label>
+                    </div>
+
+                    <div class="drop-zone" id="drop-zone">
+                        <textarea
+                            id="json-input"
+                            placeholder="Paste your Datadog dashboard JSON here or drop a .json file..."
+                            aria-label="Datadog JSON input"
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+
+                    <div id="input-error" class="error-message" role="alert" aria-live="polite"></div>
+                </section>
+
+                <!-- Output Section -->
+                <section class="output-section">
+                    <h2>Output</h2>
+                    <div class="output-controls">
+                        <button id="copy-output" class="btn btn-primary" disabled>
+                            📋 Copy
+                        </button>
+                        <button id="download-output" class="btn btn-primary" disabled>
+                            💾 Download .tf
+                        </button>
+                        <button id="validate-hcl" class="btn btn-secondary" disabled>
+                            ✅ Validate HCL
+                        </button>
+                    </div>
+
+                    <div class="output-container">
+                        <pre id="hcl-output" aria-label="Generated HCL output"><code>// Generated Terraform HCL will appear here...</code></pre>
+                    </div>
+
+                    <div id="output-success" class="success-message" role="status" aria-live="polite"></div>
+                </section>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <details>
+                    <summary>📖 How to use</summary>
+                    <ol>
+                        <li>Export your Datadog dashboard JSON from the Datadog UI</li>
+                        <li>Paste the JSON content into the input area or drag & drop a .json file</li>
+                        <li>The tool will generate clean Terraform HCL resource code</li>
+                        <li>Copy the output or download as a .tf file</li>
+                        <li>Use <code>terraform import</code> to import the existing dashboard</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>⚠️ Important Notes</summary>
+                    <ul>
+                        <li>This tool focuses on basic dashboard structure - widgets may need manual adjustment</li>
+                        <li>Always review and test generated HCL before applying</li>
+                        <li>Ensure your Terraform provider supports the generated resource attributes</li>
+                    </ul>
+                </details>
+            </section>
+        </main>
+
+        <footer>
+            <p>
+                <a href="https://registry.terraform.io/providers/DataDog/datadog/latest/docs" target="_blank" rel="noopener">Datadog Provider Docs</a> •
+                Made with ❤️ for DevOps
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+{
+  "version": "1.0.0",
+  "description": "Widget configuration for modern Datadog Terraform HCL generation",
+
+  "layout": {
+    "blockName": "widget_layout",
+    "properties": {
+      "x": "x",
+      "y": "y",
+      "width": "width",
+      "height": "height",
+      "is_column_break": "is_column_break"
+    },
+    "defaults": {
+      "is_column_break": false
+    }
+  },
+
+  "widgets": {
+    "timeseries": {
+      "blockName": "timeseries_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "show_legend": "show_legend",
+        "legend_layout": "legend_layout",
+        "legend_columns": "legend_columns",
+        "legend_size": "legend_size",
+        "right_yaxis": "right_yaxis",
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "modern",
+      "features": {
+        "supportsYAxis": true,
+        "supportsEvents": true,
+        "supportsRightYAxis": true,
+        "supportsFormulas": true
+      }
+    },
+
+    "query_value": {
+      "blockName": "query_value_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "autoscale": "autoscale",
+        "precision": "precision",
+        "custom_unit": "custom_unit",
+        "text_align": "text_align",
+        "custom_links": "custom_links",
+        "timeseries_background": "timeseries_background"
+      },
+      "requestStructure": "modern",
+      "features": {
+        "supportsConditionalFormats": true,
+        "supportsFormulas": true
+      }
+    },
+
+    "query_table": {
+      "blockName": "query_table_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links",
+        "has_search_bar": "has_search_bar"
+      },
+      "requestStructure": "modern",
+      "features": {
+        "supportsConditionalFormats": true,
+        "supportsFormulas": true
+      }
+    },
+
+    "toplist": {
+      "blockName": "toplist_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {
+        "supportsConditionalFormats": true
+      }
+    },
+
+    "note": {
+      "blockName": "note_definition",
+      "commonProperties": [],
+      "specificProperties": {
+        "content": "content",
+        "background_color": "background_color",
+        "font_size": "font_size",
+        "text_align": "text_align",
+        "vertical_align": "vertical_align",
+        "show_tick": "show_tick",
+        "tick_pos": "tick_pos",
+        "tick_edge": "tick_edge",
+        "has_padding": "has_padding"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "group": {
+      "blockName": "group_definition",
+      "commonProperties": ["title", "layout_type"],
+      "specificProperties": {
+        "background_color": "background_color",
+        "banner_img": "banner_img",
+        "show_title": "show_title"
+      },
+      "requestStructure": "none",
+      "features": {
+        "hasNestedWidgets": true
+      }
+    },
+
+    "heatmap": {
+      "blockName": "heatmap_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {}
+    },
+
+    "distribution": {
+      "blockName": "distribution_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {}
+    },
+
+    "scatterplot": {
+      "blockName": "scatterplot_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "color_by_groups": "color_by_groups",
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {}
+    },
+
+    "check_status": {
+      "blockName": "check_status_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "check": "check",
+        "grouping": "grouping",
+        "group_by": "group_by",
+        "tags": "tags",
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "hostmap": {
+      "blockName": "hostmap_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "node_type": "node_type",
+        "no_metric_hosts": "no_metric_hosts",
+        "no_group_hosts": "no_group_hosts",
+        "scope": "scope",
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {}
+    },
+
+    "service_map": {
+      "blockName": "service_map_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "service": "service",
+        "env": "env",
+        "filters": "filters"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "log_stream": {
+      "blockName": "log_stream_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "query": "query",
+        "logset": "logset",
+        "columns": "columns",
+        "indexes": "indexes",
+        "message_display": "message_display",
+        "show_date_column": "show_date_column",
+        "show_message_column": "show_message_column"
+      },
+      "requestStructure": "none",
+      "features": {
+        "supportsSort": true
+      }
+    },
+
+    "geomap": {
+      "blockName": "geomap_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {
+        "supportsStyle": true,
+        "supportsView": true
+      }
+    },
+
+    "change": {
+      "blockName": "change_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "custom_links": "custom_links"
+      },
+      "requestStructure": "legacy",
+      "features": {}
+    },
+
+    "alert_graph": {
+      "blockName": "alert_graph_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "alert_id": "alert_id",
+        "viz_type": "viz_type"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "alert_value": {
+      "blockName": "alert_value_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "alert_id": "alert_id",
+        "precision": "precision",
+        "unit": "unit",
+        "text_align": "text_align"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "slo": {
+      "blockName": "service_level_objective_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "view_type": "view_type",
+        "slo_id": "slo_id",
+        "show_error_budget": "show_error_budget",
+        "view_mode": "view_mode",
+        "time_windows": "time_windows",
+        "global_time_target": "global_time_target"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "monitor_summary": {
+      "blockName": "monitor_summary_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "query": "query",
+        "summary_type": "summary_type",
+        "sort": "sort",
+        "display_format": "display_format",
+        "color_preference": "color_preference",
+        "hide_zero_counts": "hide_zero_counts",
+        "show_last_triggered": "show_last_triggered"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "event_stream": {
+      "blockName": "event_stream_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "query": "query",
+        "event_size": "event_size",
+        "tags_execution": "tags_execution"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "event_timeline": {
+      "blockName": "event_timeline_definition",
+      "commonProperties": ["title", "title_size", "title_align"],
+      "specificProperties": {
+        "query": "query",
+        "tags_execution": "tags_execution"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "image": {
+      "blockName": "image_definition",
+      "commonProperties": [],
+      "specificProperties": {
+        "url": "url",
+        "url_dark_theme": "url_dark_theme",
+        "sizing": "sizing",
+        "margin": "margin",
+        "has_background": "has_background",
+        "has_border": "has_border",
+        "horizontal_align": "horizontal_align",
+        "vertical_align": "vertical_align"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "iframe": {
+      "blockName": "iframe_definition",
+      "commonProperties": [],
+      "specificProperties": {
+        "url": "url"
+      },
+      "requestStructure": "none",
+      "features": {}
+    },
+
+    "free_text": {
+      "blockName": "free_text_definition",
+      "commonProperties": [],
+      "specificProperties": {
+        "text": "text",
+        "color": "color",
+        "font_size": "font_size",
+        "text_align": "text_align"
+      },
+      "requestStructure": "none",
+      "features": {}
+    }
+  },
+
+  "requestStructures": {
+    "legacy": {
+      "description": "Old q-based format for backward compatibility",
+      "queryProperty": "q",
+      "supportsFormulas": false,
+      "supportsConditionalFormats": true
+    },
+    "modern": {
+      "description": "New query block format with full feature support",
+      "hasQueryBlock": true,
+      "supportsFormulas": true,
+      "supportsConditionalFormats": true,
+      "queryTypes": {
+        "metric_query": {
+          "properties": ["data_source", "name", "query", "aggregator"],
+          "required": ["query"]
+        },
+        "log_query": {
+          "properties": ["data_source", "name", "search", "indexes", "group_by", "compute"],
+          "required": ["search"]
+        },
+        "process_query": {
+          "properties": ["data_source", "name", "metric", "search_by", "filter_by", "limit"],
+          "required": ["metric"]
+        }
+      }
+    },
+    "none": {
+      "description": "Widget does not support requests"
+    }
+  },
+
+  "styleBlocks": {
+    "conditional_formats": {
+      "properties": ["comparator", "value", "palette", "hide_value"],
+      "required": ["comparator", "value"]
+    },
+    "style": {
+      "properties": ["palette", "line_type", "line_width"],
+      "required": []
+    },
+    "formula": {
+      "properties": ["formula_expression", "limit"],
+      "required": ["formula_expression"]
+    },
+    "yaxis": {
+      "properties": ["label", "scale", "min", "max", "include_zero"],
+      "required": []
+    },
+    "events": {
+      "properties": ["q", "tags_execution"],
+      "required": ["q"]
+    },
+    "sort": {
+      "properties": ["column", "order"],
+      "required": ["column"]
+    },
+    "time": {
+      "properties": ["live_span"],
+      "required": []
+    }
+  },
+
+  "validationRules": {
+    "required_dashboard_fields": ["title", "layout_type"],
+    "valid_layout_types": ["ordered", "free"],
+    "valid_widget_types": [
+              "group", "timeseries", "query_value", "query_table", "note", "toplist",
+      "scatterplot", "heatmap", "distribution", "check_status",
+      "hostmap", "service_map", "log_stream", "trace_service",
+      "iframe", "image", "free_text", "alert_graph", "alert_value",
+      "change", "event_stream", "event_timeline", "slo",
+      "monitor_summary", "manage_status", "geomap"
+    ],
+    "valid_display_types": ["line", "area", "bars"],
+    "valid_aggregators": ["avg", "max", "min", "sum", "last"],
+    "valid_comparators": [">", "<", ">=", "<=", "==", "!="],
+    "valid_palettes": ["dog_classic", "cool", "warm", "purple", "orange", "gray"],
+    "valid_text_aligns": ["left", "center", "right"],
+    "valid_font_sizes": ["14", "16", "18", "24", "36", "48", "60"]
+  }
+}
